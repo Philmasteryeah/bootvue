@@ -13,6 +13,11 @@ $ mvn clean install
 $ mvn --projects backend spring-boot:run
 $
 ```
+![alt text](https://abload.de/img/bootvuektjmt.png)
+
+
+
+
 
 # THX
 - great project: https://github.com/jonashackt/spring-boot-vuejs
