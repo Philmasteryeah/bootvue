@@ -1,4 +1,3 @@
-  
 // vue.config.js
 module.exports = {
   // proxy all webpack dev-server requests starting with /api
@@ -16,16 +15,5 @@ module.exports = {
   // Change build paths to make them Maven compatible
   // see https://cli.vuejs.org/config/
   outputDir: 'target/dist',
-  assetsDir: 'static',
-  runtimeCompiler: true,
-
-  configureWebpack: {
-    //Necessary to run npm link https://webpack.js.org/configuration/resolve/#resolve-symlinks
-    resolve: {
-       symlinks: false
-    }
-  },
-  transpileDependencies: [
-    '@coreui/utils'
-  ]
+  assetsDir: 'static'
 };

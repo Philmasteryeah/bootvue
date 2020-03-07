@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project
-	xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>frontend</artifactId>
 
@@ -15,7 +13,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<frontend-maven-plugin.version>1.9.1</frontend-maven-plugin.version>
+    	<frontend-maven-plugin.version>1.9.1</frontend-maven-plugin.version>
 	</properties>
 
 	<build>
@@ -56,20 +54,19 @@
 						</goals>
 						<configuration>
 							<arguments>run build</arguments>
-						</configuration>
+            			</configuration>
 					</execution>
-					<!-- Run Unit tests with Jest 
+					<!-- Run Unit tests with Jest -->
 					<execution>
-						<id>npm run test:unit</id>
-						<goals>
-							<goal>npm</goal>
-						</goals>
-						<phase>test</phase>
-						<configuration>
-							<arguments>run test:unit</arguments>
-						</configuration>
+					<id>npm run test:unit</id>
+					<goals>
+						<goal>npm</goal>
+					</goals>
+					<phase>test</phase>
+					<configuration>
+						<arguments>run test:unit</arguments>
+					</configuration>
 					</execution>
-					-->
 					<!-- Run End2End tests with Nightwatch -->
 					<!--
 					<execution>
