@@ -10,6 +10,9 @@ export default {
     hello() {
         return AXIOS.get(`/hello`);
     },
+    getUsers() {
+        return AXIOS.get(`/users`);
+    },
     getUser(userId) {
         return AXIOS.get(`/user/` + userId);
     },

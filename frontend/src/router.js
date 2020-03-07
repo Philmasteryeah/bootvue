@@ -4,6 +4,7 @@ import Hello from '@/views/Hello'
 import Service from '@/views/Service'
 import Test from '@/views/Test'
 import User from '@/views/User'
+import Users from '@/views/Users'
 import Login from '@/views/Login'
 import Protected from '@/views/Protected'
 
@@ -16,6 +17,7 @@ const router = new Router({
     routes: [
         { path: '/', component: Hello },
         { path: '/test', component: Test },
+        { path: '/users', component: Users },
         { path: '/callservice', component: Service },
         { path: '/user', component: User },
         { path: '/login', component: Login },

@@ -3,6 +3,7 @@
     <div id="nav">
       <router-link to="/">Hello</router-link> |
       <router-link to="/test">Test</router-link> |
+      <router-link to="/users">Users</router-link> |
       <router-link to="/callservice">Service</router-link> |
       <router-link to="/user">User</router-link> |
       <router-link to="/login">Login</router-link> |
