@@ -1,33 +1,41 @@
 package org.philmaster.bootvue.controller;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.Spliterator;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import org.philmaster.bootvue.exception.UserNotFoundException;
 import org.philmaster.bootvue.model.User;
 import org.philmaster.bootvue.model.UserRepo;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.view.RedirectView;
 
-@RestController()
-@RequestMapping("/api")
+@RestController
+@CrossOrigin
 public class BackendController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(BackendController.class);
 
-	public static final String HELLO_TEXT = "Hello from Spring Boot Backend!";
+	public static final String HELLO_TEXT = "Hello from Spring Boot Backendasd!";
 	public static final String SECURED_TEXT = "Hello from the secured resource!";
 
 	@Autowired
 	private UserRepo userRepository;
+
+	@RequestMapping("/login")
+	public RedirectView login() {
+		System.err.println("assfd");
+		return new RedirectView("/#/pages/login");
+	}
 
 	@GetMapping(path = "/hello")
 	public String sayHello() {
@@ -72,11 +80,9 @@ public class BackendController {
 	// Forwards all routes to FrontEnd except: '/', '/index.html', '/api', '/api/**'
 	// Required because of 'mode: history' usage in frontend routing, see README for
 	// further details
-	@GetMapping(value = "{_:^(?!index\\.html|api).*$}")
+	@RequestMapping(value = "{_:^(?!index\\.html|api).$}")
 	public String redirectApi() {
-
-		LOG.info("URL entered directly into the Browser, so we need tod redirect...");
-
-		return "redirect:";
+		LOG.info("URL entered directly into the Browser, so we need to redirect...");
+		return "forward:/";
 	}
 }
