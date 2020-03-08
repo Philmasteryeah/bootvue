@@ -36,7 +36,7 @@ public class BackendController {
 	public RedirectView login() {
 		
 		System.err.println("assfdasasssdsdd");
-		return new RedirectView("/#/pages/login");
+		return new RedirectView("/pages/login");
 	}
 
 	@GetMapping(path = "/hello")

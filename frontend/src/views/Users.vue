@@ -1,11 +1,17 @@
 <template>
-  <div>
-    <CButton color="primary" class="px-4" @click="loadUsers()">Load User List</CButton>
+  <div class="users">
+    <CRow>
+      <CCol md="12">
+        <usercomp />
+      </CCol>
+    </CRow>
     <CRow>
       <CCol md="12">
         <CCard>
           <CCardHeader>Users</CCardHeader>
+          
           <CCardBody>
+            <CButton color="primary" @click="loadUsers()">Load User List</CButton>
             <CDataTable
               class="mb-0 table-outline"
               hover
@@ -28,6 +34,7 @@
                 <div>{{item.lastName}}</div>
               </td>
             </CDataTable>
+            
           </CCardBody>
         </CCard>
       </CCol>
@@ -37,10 +44,11 @@
 
 <script>
 import api from "./backend-api";
+import usercomp from "./User";
 
 export default {
-  name: "Dashboard",
-  components: {},
+  name: "users",
+  components: { usercomp },
   data() {
     return {
       selected: "Month",

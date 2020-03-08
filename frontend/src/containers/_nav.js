@@ -14,23 +14,17 @@ export default [
       },
       {
         _name: 'CSidebarNavTitle',
-        _children: ['Theme']
+        _children: ['Administration']
       },
       {
         _name: 'CSidebarNavItem',
-        name: 'Colors',
-        to: '/theme/colors',
-        icon: 'cil-drop'
-      },
-      {
-        _name: 'CSidebarNavItem',
-        name: 'Typography',
-        to: '/theme/typography',
-        icon: 'cil-pencil'
+        name: 'Client',
+        to: '/adm/clientDetail',
+        icon: 'cil-star'
       },
       {
         _name: 'CSidebarNavTitle',
-        _children: ['Components']
+        _children: ['Lists']
       },
       {
         _name: 'CSidebarNavDropdown',
@@ -130,64 +124,20 @@ export default [
       },
       {
         _name: 'CSidebarNavItem',
-        name: 'Charts',
-        to: '/charts',
-        icon: 'cil-chart-pie'
-      },
-      {
-        _name: 'CSidebarNavDropdown',
-        name: 'Icons',
-        route: '/icons',
-        icon: 'cil-star',
-        items: [
-          {
-            name: 'CoreUI Icons',
-            to: '/icons/coreui-icons',
-            badge: {
-              color: 'info',
-              text: 'NEW'
-            }
-          },
-          {
-            name: 'Brands',
-            to: '/icons/brands'
-          },
-          {
-            name: 'Flags',
-            to: '/icons/flags'
-          }
-        ]
-      },
-      {
-        _name: 'CSidebarNavDropdown',
-        name: 'Notifications',
-        route: '/notifications',
-        icon: 'cil-bell',
-        items: [
-          {
-            name: 'Alerts',
-            to: '/notifications/alerts'
-          },
-          {
-            name: 'Badges',
-            to: '/notifications/badges'
-          },
-          {
-            name: 'Modals',
-            to: '/notifications/modals'
-          }
-        ]
-      },
-      {
-        _name: 'CSidebarNavItem',
-        name: 'Widgets',
-        to: '/widgets',
-        icon: 'cil-calculator',
+        name: 'Users',
+        to: '/users',
+        icon: 'cil-user',
         badge: {
           color: 'primary',
           text: 'NEW',
           shape: 'pill'
         }
+      },
+      {
+        _name: 'CSidebarNavItem',
+        name: 'Widgets',
+        to: '/widgets',
+        icon: 'cil-calculator'
       },
       {
         _name: 'CSidebarNavDivider',
