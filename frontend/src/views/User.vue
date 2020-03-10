@@ -3,10 +3,20 @@
     <CCard>
       <CCardHeader>Create User</CCardHeader>
       <CCardBody>
-        <CInput type="text" v-model="user.firstName" placeholder="first name" />
-        <CInput type="text" v-model="user.lastName" placeholder="last name" />
-
-        <CButton color="primary" class="px-4" @click="createNewUser()">Create User</CButton>
+        
+        <CInput placeholder="first name" autocomplete="first" v-model="user.firstName">
+          <template #prepend-content>
+            <CIcon name="cil-user" />
+          </template>
+        </CInput>
+        
+        <CInput placeholder="last name" autocomplete="last"  v-model="user.lastName">
+          <template #prepend-content>
+            <CIcon name="cil-user" />
+          </template>
+        </CInput>
+        
+        <CButton color="success" class="px-4" @click="createNewUser()">Create User</CButton>
 
         <div v-if="showResponse">
           <h6>User created with Id: {{ response }}</h6>
