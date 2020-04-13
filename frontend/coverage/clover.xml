@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1583618826758" clover="3.2.0">
-  <project timestamp="1583618826758" name="All files">
-    <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1" elements="2" coveredelements="2" complexity="0" loc="1" ncloc="1" packages="1" files="1" classes="1"/>
-    <file name="App.vue" path="C:\Users\Philmaster\workspace\bootvuejs\bootvue\frontend\src\App.vue">
-      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <line num="21" count="1" type="stmt"/>
-    </file>
+<coverage generated="1586807529445" clover="3.2.0">
+  <project timestamp="1586807529445" name="All files">
+    <metrics statements="0" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0" elements="0" coveredelements="0" complexity="0" loc="0" ncloc="0" packages="0" files="0" classes="0"/>
   </project>
 </coverage>

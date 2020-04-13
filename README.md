@@ -4,6 +4,33 @@
 - Vue.js
 - CoreUI with AdminLTE
 - axios for REST
+- Java, Maven, Node
+
+# info
+- simple prototype approach for modern web applications
+- two seperated projects managed with maven
+- monolitic generic user backend as auth and resource gateway
+	 - should work as base for other projects
+- vue as simple and modern frontend
+	- can be replaced later
+
+# why
+- vue vs angular vs react
+	- vue is small, modern, simple and easy to use
+	- no typescript
+	- no complex Facebook bloat
+- spring boot vs javaEE
+	- versatile bloat integrations in spring
+	- less code with more functionality
+
+# TODO
+- complete backend archetype with users and auth
+- single sign on with JWT with redis
+- elasticsearch integration
+- testing other frontend primeVue https://www.primefaces.org/primevue/
+- usage of netty instead of tomcat
+- swagger UI for api documentation
+- image of the architecture design
 
 # How to start
 - start both

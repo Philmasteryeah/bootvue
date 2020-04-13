@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.philmaster.bootvue.exception.UserNotFoundException;
 import org.philmaster.bootvue.model.User;
-import org.philmaster.bootvue.model.UserRepo;
+import org.philmaster.bootvue.repository.UserRepository;
+import org.philmaster.bootvue.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,11 +31,11 @@ public class BackendController {
 	public static final String SECURED_TEXT = "Hello from the secured resource!";
 
 	@Autowired
-	private UserRepo userRepository;
+	public UserService userService;
 
 	@RequestMapping("/login")
 	public RedirectView login() {
-		
+
 		System.err.println("assfdasasssdsdd");
 		return new RedirectView("/pages/login");
 	}
@@ -42,35 +43,31 @@ public class BackendController {
 	@GetMapping(path = "/hello")
 	public String sayHello() {
 		LOG.info("GET called on /hello resource");
+
+		// generateImageFromPDF("src/main/resources/pdf.pdf", "png");
+
 		return HELLO_TEXT;
 	}
 
 	@GetMapping(produces = "application/json", path = "/users")
 	public @ResponseBody List<User> getUsers() {
 		LOG.info("GET called on /users resource");
-		return userRepository.getAllUsers();
+		return userService.getAllUsers();
 	}
 
 	@PostMapping(path = "/user/{lastName}/{firstName}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public long addNewUser(@PathVariable("lastName") String lastName, @PathVariable("firstName") String firstName) {
-		User savedUser = userRepository.save(new User(firstName, lastName));
+		User savedUser = userService.save(firstName, lastName);
 
 		LOG.info(savedUser.toString() + " successfully saved into DB");
 
 		return savedUser.getId();
 	}
 
-	@GetMapping(path = "/user/{id}")
+	@GetMapping(path = "/user/{id}", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
 	public User getUserById(@PathVariable("id") long id) {
-
-		return userRepository.findById(id)
-				.map(user -> {
-					LOG.info("Reading user with id " + id + " from database.");
-					return user;
-				})
-				.orElseThrow(() -> new UserNotFoundException(
-						"The user with the id " + id + " couldn't be found in the database."));
+		return userService.findById(id);
 	}
 
 	@GetMapping(path = "/secured")
@@ -87,4 +84,5 @@ public class BackendController {
 		LOG.info("URL entered directly into the Browser, so we need to redirect...");
 		return "forward:/";
 	}
+
 }
