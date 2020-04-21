@@ -22,4 +22,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
 				.collect(Collectors.toList());
 	}
 
+	User findbyUsername(String username);
+
 }

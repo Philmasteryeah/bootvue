@@ -5,7 +5,7 @@ import java.util.List;
 import org.philmaster.bootvue.exception.UserNotFoundException;
 import org.philmaster.bootvue.model.User;
 import org.philmaster.bootvue.repository.UserRepository;
-import org.philmaster.bootvue.service.UserService;
+import org.philmaster.bootvue.service.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +31,7 @@ public class BackendController {
 	public static final String SECURED_TEXT = "Hello from the secured resource!";
 
 	@Autowired
-	public UserService userService;
+	public UserServiceImpl userService;
 
 	@RequestMapping("/login")
 	public RedirectView login() {
