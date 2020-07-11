@@ -2,9 +2,7 @@ package org.philmaster.bootvue.controller;
 
 import java.util.List;
 
-import org.philmaster.bootvue.exception.UserNotFoundException;
 import org.philmaster.bootvue.model.User;
-import org.philmaster.bootvue.repository.UserRepository;
 import org.philmaster.bootvue.service.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

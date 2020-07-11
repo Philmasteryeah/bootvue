@@ -1,10 +1,9 @@
 package org.philmaster.bootvue.model;
 
 import static org.philmaster.bootvue.config.Constants.EMAIL_REGEX;
-import static org.philmaster.bootvue.config.Constants.LOGIN_REGEX;
 
-import java.io.Serializable;
 import java.time.Instant;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
@@ -17,14 +16,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
-import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * A user.
@@ -37,7 +34,7 @@ import javax.validation.constraints.Size;
 //@NamedQuery(name = "findUserByActivationKey", query = "select u from User u where u.activationKey = :activationKey")
 //@NamedQuery(name = "findUserByUserId", query = "select u from User u where u.id = :id")
 //@NamedEntityGraph(name = "graph.user.authorities", attributeNodes = @NamedAttributeNode("authorities"))
-public class User implements Serializable {
+public class User implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
@@ -45,13 +42,13 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	//@NotNull
-	//@Pattern(regexp = LOGIN_REGEX)
-	//@Size(min = 1, max = 50)
-	//@Column(length = 50, unique = true, nullable = false)
+	// @NotNull
+	// @Pattern(regexp = LOGIN_REGEX)
+	// @Size(min = 1, max = 50)
+	// @Column(length = 50, unique = true, nullable = false)
 	private String login;
 
-	//@NotNull
+	// @NotNull
 	@Size(min = 32, max = 32)
 	@Column(name = "password_hash", length = 32)
 	private String password;
@@ -64,12 +61,16 @@ public class User implements Serializable {
 	@Column(name = "last_name", length = 50)
 	private String lastName;
 
+	@Size(max = 50)
+	@Column(name = "username", length = 50)
+	private String username;
+
 	@Email(regexp = EMAIL_REGEX, message = "bla")
 	@Size(min = 5, max = 100)
 	@Column(length = 100, unique = true)
 	private String email;
 
-	//@NotNull
+	// @NotNull
 	@Column(nullable = false)
 	private boolean activated = false;
 
@@ -94,6 +95,10 @@ public class User implements Serializable {
 					@JoinColumn(name = "authority_name", referencedColumnName = "name") })
 	private Set<Authority> authorities = new HashSet<>();
 
+	public User() {
+		
+	}
+	
 	public User(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -188,8 +193,8 @@ public class User implements Serializable {
 		this.langKey = langKey;
 	}
 
-	public Set<Authority> getAuthorities() {
-		return authorities;
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return (Collection<? extends GrantedAuthority>) authorities;
 	}
 
 	public void setAuthorities(Set<Authority> authorities) {
@@ -218,6 +223,36 @@ public class User implements Serializable {
 	public String toString() {
 		return "User{" + "id=" + id + ", login=" + login + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", email=" + email + ", activated=" + activated + ", activationKey=" + activationKey + '}';
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return username;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 }

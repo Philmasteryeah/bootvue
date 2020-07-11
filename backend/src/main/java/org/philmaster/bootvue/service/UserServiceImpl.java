@@ -11,7 +11,7 @@ import org.philmaster.bootvue.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -38,7 +38,8 @@ public class UserServiceImpl implements UserDetailsService {
 
 	public User findbyUsername(String username) {
 		// TODO
-		return userRepository.findbyUsername(username);
+		return userRepository.findByFirstName(username)
+				.get(0);
 	}
 
 	public List<User> getAllUsers() {
@@ -56,11 +57,11 @@ public class UserServiceImpl implements UserDetailsService {
 	@Override
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findbyUsername(username);
+		User user = findbyUsername(username);
 		// TOOD
-		Set grantedAuthorities = new HashSet<>();
-		for (Authority role : user.getAuthorities()) {
-			grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+		Set<Authority> grantedAuthorities = new HashSet<>();
+		for (GrantedAuthority role : user.getAuthorities()) {
+			grantedAuthorities.add(new Authority(role.toString()));
 		}
 
 		return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(),
