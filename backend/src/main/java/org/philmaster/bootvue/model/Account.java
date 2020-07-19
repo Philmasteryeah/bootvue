@@ -3,10 +3,13 @@ package org.philmaster.bootvue.model;
 import static org.philmaster.bootvue.config.Constants.EMAIL_REGEX;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,6 +24,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 
 /**
@@ -34,7 +38,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 //@NamedQuery(name = "findUserByActivationKey", query = "select u from User u where u.activationKey = :activationKey")
 //@NamedQuery(name = "findUserByUserId", query = "select u from User u where u.id = :id")
 //@NamedEntityGraph(name = "graph.user.authorities", attributeNodes = @NamedAttributeNode("authorities"))
-public class User implements UserDetails {
+public class Account extends User {
 
 	private static final long serialVersionUID = 1L;
 
@@ -49,9 +53,6 @@ public class User implements UserDetails {
 	private String login;
 
 	// @NotNull
-	@Size(min = 32, max = 32)
-	@Column(name = "password_hash", length = 32)
-	private String password;
 
 	@Size(max = 50)
 	@Column(name = "first_name", length = 50)
@@ -60,10 +61,6 @@ public class User implements UserDetails {
 	@Size(max = 50)
 	@Column(name = "last_name", length = 50)
 	private String lastName;
-
-	@Size(max = 50)
-	@Column(name = "username", length = 50)
-	private String username;
 
 	@Email(regexp = EMAIL_REGEX, message = "bla")
 	@Size(min = 5, max = 100)
@@ -95,13 +92,12 @@ public class User implements UserDetails {
 					@JoinColumn(name = "authority_name", referencedColumnName = "name") })
 	private Set<Authority> authorities = new HashSet<>();
 
-	public User() {
-		
+	public Account() {
+		super("test", "1", Collections.singleton(new Authority()));
 	}
-	
-	public User(String firstName, String lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
+
+	public Account(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+		super(username, password, authorities);
 	}
 
 	public Long getId() {
@@ -119,14 +115,6 @@ public class User implements UserDetails {
 	// Lowercase the login before saving it in database
 	public void setLogin(String login) {
 		this.login = login.toLowerCase(Locale.ENGLISH);
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
 	}
 
 	public String getFirstName() {
@@ -193,66 +181,8 @@ public class User implements UserDetails {
 		this.langKey = langKey;
 	}
 
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return (Collection<? extends GrantedAuthority>) authorities;
-	}
-
 	public void setAuthorities(Set<Authority> authorities) {
 		this.authorities = authorities;
-	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-
-		User user = (User) o;
-		return login.equals(user.login);
-	}
-
-	@Override
-	public int hashCode() {
-		return login.hashCode();
-	}
-
-	@Override
-	public String toString() {
-		return "User{" + "id=" + id + ", login=" + login + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", email=" + email + ", activated=" + activated + ", activationKey=" + activationKey + '}';
-	}
-
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return username;
-	}
-
-	@Override
-	public boolean isAccountNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isAccountNonLocked() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isCredentialsNonExpired() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		// TODO Auto-generated method stub
-		return true;
 	}
 
 }

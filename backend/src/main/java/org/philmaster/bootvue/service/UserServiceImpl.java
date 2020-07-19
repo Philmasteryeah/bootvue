@@ -1,12 +1,13 @@
 package org.philmaster.bootvue.service;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import org.philmaster.bootvue.exception.UserNotFoundException;
 import org.philmaster.bootvue.model.Authority;
-import org.philmaster.bootvue.model.User;
+import org.philmaster.bootvue.model.Account;
 import org.philmaster.bootvue.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,7 +27,7 @@ public class UserServiceImpl implements UserDetailsService {
 	@Autowired
 	private UserRepository userRepository;
 
-	public User findById(long id) {
+	public Account findById(long id) {
 		return userRepository.findById(id)
 				.map(user -> {
 					LOGGER.info("Reading user with id " + id + " from database.");
@@ -36,36 +37,44 @@ public class UserServiceImpl implements UserDetailsService {
 						"The user with the id " + id + " couldn't be found in the database."));
 	}
 
-	public User findbyUsername(String username) {
+	public Account findbyUsername(String username) {
 		// TODO
 		return userRepository.findByFirstName(username)
 				.get(0);
 	}
 
-	public List<User> getAllUsers() {
+	public List<Account> getAllUsers() {
 		return userRepository.getAllUsers();
 	}
 
-	public User save(User user) {
+	public Account save(Account user) {
 		return userRepository.save(user);
 	}
 
-	public User save(String firstName, String lastName) {
-		return userRepository.save(new User(firstName, lastName));
+	public Account save(String firstName, String lastName) {
+		Collection<GrantedAuthority> authorities = new HashSet<>();
+		Authority authority = new Authority();
+		authorities.add(authority);
+
+		Account account = new Account(firstName, "1", authorities);
+		account.setFirstName(firstName);
+		account.setLastName(lastName);
+		account.setLogin(firstName);
+
+		return userRepository.save(account);
 	}
 
 	@Override
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = findbyUsername(username);
-		// TOOD
-		Set<Authority> grantedAuthorities = new HashSet<>();
-		for (GrantedAuthority role : user.getAuthorities()) {
-			grantedAuthorities.add(new Authority(role.toString()));
-		}
 
-		return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(),
-				grantedAuthorities);
+		return findbyUsername(username);
+//
+//		Set<Authority> authorities = new HashSet<>();
+//		for (GrantedAuthority role : user.getAuthorities())
+//			authorities.add(new Authority(role.toString()));
+//
+//		return new Account(username, user.getPassword(), authorities);
 	}
 
 }

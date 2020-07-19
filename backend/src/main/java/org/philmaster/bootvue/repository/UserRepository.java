@@ -4,24 +4,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import org.philmaster.bootvue.model.User;
+import org.philmaster.bootvue.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<Account, Long> {
 
-	List<User> findByLastName(@Param("lastname") String lastname);
+	List<Account> findByLastName(@Param("lastname") String lastname);
 
-	List<User> findByFirstName(@Param("firstname") String firstname);
+	List<Account> findByFirstName(@Param("firstname") String firstname);
 
-	public default List<User> getAllUsers() {
+	public default List<Account> getAllUsers() {
 		return StreamSupport.stream(this.findAll()
 				.spliterator(), true)
 				.collect(Collectors.toList());
 	}
 
-	//User findbyUsername(@Param("username") String username);
+	// User findbyUsername(@Param("username") String username);
 
 }

@@ -2,7 +2,7 @@ package org.philmaster.bootvue.controller;
 
 import java.util.List;
 
-import org.philmaster.bootvue.model.User;
+import org.philmaster.bootvue.model.Account;
 import org.philmaster.bootvue.service.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,7 +48,7 @@ public class BackendController {
 	}
 
 	@GetMapping(produces = "application/json", path = "/users")
-	public @ResponseBody List<User> getUsers() {
+	public @ResponseBody List<Account> getUsers() {
 		LOG.info("GET called on /users resource");
 		return userService.getAllUsers();
 	}
@@ -56,15 +56,14 @@ public class BackendController {
 	@PostMapping(path = "/user/{lastName}/{firstName}")
 	@ResponseStatus(HttpStatus.CREATED)
 	public long addNewUser(@PathVariable("lastName") String lastName, @PathVariable("firstName") String firstName) {
-		User savedUser = userService.save(firstName, lastName);
-
+		Account savedUser = userService.save(firstName, lastName);
 		LOG.info(savedUser.toString() + " successfully saved into DB");
 
 		return savedUser.getId();
 	}
 
 	@GetMapping(path = "/user/{id}", produces = org.springframework.http.MediaType.APPLICATION_JSON_VALUE)
-	public User getUserById(@PathVariable("id") long id) {
+	public Account getUserById(@PathVariable("id") long id) {
 		return userService.findById(id);
 	}
 
