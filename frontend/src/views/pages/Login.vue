@@ -8,12 +8,10 @@
               <CForm>
                 <h1>Login</h1>
                 <p class="text-muted">Sign In to your account</p>
-                <CInput
-                  placeholder="Username"
-                  autocomplete="username email"
-                  v-model="user"
-                >
-                  <template #prepend-content><CIcon name="cil-user"/></template>
+                <CInput placeholder="Username" autocomplete="username email" v-model="user">
+                  <template #prepend-content>
+                    <CIcon name="cil-user" />
+                  </template>
                 </CInput>
                 <CInput
                   placeholder="Password"
@@ -21,7 +19,9 @@
                   autocomplete="curent-password"
                   v-model="password"
                 >
-                  <template #prepend-content><CIcon name="cil-lock-locked"/></template>
+                  <template #prepend-content>
+                    <CIcon name="cil-lock-locked" />
+                  </template>
                 </CInput>
                 <CRow>
                   <CCol col="6" class="text-left">
@@ -29,7 +29,6 @@
                   </CCol>
                   <CCol col="6" class="text-right">
                     <CButton color="link" class="px-0">Forgot password?</CButton>
-                    <CButton color="link" class="d-md-none">Register now!</CButton>
                   </CCol>
                 </CRow>
               </CForm>
@@ -46,9 +45,8 @@
             <CButton
               color="primary"
               class="active mt-3"
-            >
-              Register Now!
-            </CButton>
+              @click="$router.push('/register');"
+            >Register Now!</CButton>
           </CCard>
         </CCardGroup>
       </CCol>
@@ -58,30 +56,31 @@
 
 <script>
 export default {
-  name: 'Login',
-  data () {
+  name: "Login",
+  data() {
     return {
       loginError: false,
-      user: '',
-      password: '',
+      user: "",
+      password: "",
       error: false,
-      errors: []
-    }
+      errors: [],
+      modalRegister: false,
+    };
   },
   methods: {
     callLogin() {
       this.errors = [];
-      this.$store.dispatch("login", { user: this.user, password: this.password})
+      this.$store
+        .dispatch("login", { user: this.user, password: this.password })
         .then(() => {
-          this.$router.push('/')
+          this.$router.push("/");
         })
-        .catch(error => {
+        .catch((error) => {
           this.loginError = true;
           this.errors.push(error);
-          this.error = true
-        })
-    }
-  }
-
-}
+          this.error = true;
+        });
+    },
+  },
+};
 </script>

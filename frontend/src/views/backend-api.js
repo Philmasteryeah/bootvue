@@ -1,8 +1,8 @@
 import axios from 'axios'
 
 const AXIOS = axios.create({
-  baseURL: `/api`,
-  timeout: 1000
+    baseURL: `/api`,
+    timeout: 1000
 });
 
 
@@ -16,15 +16,16 @@ export default {
     getUser(userId) {
         return AXIOS.get(`/user/` + userId);
     },
-    createUser(firstName, lastName) {
-        return AXIOS.post(`/user/` + firstName + '/' + lastName);
+    createUser(lastName, firstName) {
+        return AXIOS.post(`/user/` + lastName + '/' + firstName);
     },
     getSecured(user, password) {
-        return AXIOS.get(`/secured/`,{
+        return AXIOS.get(`/secured/`, {
             auth: {
                 username: user,
                 password: password
-            }});
+            }
+        });
     }
 }
 

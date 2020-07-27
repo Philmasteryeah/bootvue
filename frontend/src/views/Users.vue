@@ -9,9 +9,9 @@
       <CCol md="12">
         <CCard>
           <CCardHeader>Users</CCardHeader>
-          
+
           <CCardBody>
-            <CButton color="primary" @click="loadUsers()">Load User List</CButton>
+            <CButton color="primary" @click="loadUsers()">Load User ssList</CButton>
             <CDataTable
               class="mb-0 table-outline"
               hover
@@ -26,7 +26,9 @@
                   <span class="c-avatar-status" :class="`bg-${item.avatar.status || 'secondary'}`"></span>
                 </div>
               </td>
-
+              <td slot="id" slot-scope="{item}">
+                <div>{{item.id}}</div>
+              </td>
               <td slot="firstName" slot-scope="{item}">
                 <div>{{item.firstName}}</div>
               </td>
@@ -34,7 +36,6 @@
                 <div>{{item.lastName}}</div>
               </td>
             </CDataTable>
-            
           </CCardBody>
         </CCard>
       </CCol>
@@ -53,17 +54,17 @@ export default {
     return {
       selected: "Month",
       tableItems: [],
-      tableFields: [{ key: "firstName" }, { key: "lastName" }]
+      tableFields: [{ key: "firstName" }, { key: "lastName" }],
     };
   },
   methods: {
     loadUsers() {
       api
         .getUsers()
-        .then(response => {
+        .then((response) => {
           this.tableItems = response.data;
         })
-        .catch(error => {
+        .catch((error) => {
           this.errors.push(error);
         });
       // [
@@ -73,7 +74,7 @@ export default {
       //     lastName: "bla"
       //   }
       // ];
-    }
-  }
+    },
+  },
 };
 </script>

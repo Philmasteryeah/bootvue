@@ -16,6 +16,7 @@ const Register = () => import('@/views/pages/Register')
 // Users
 const Users = () => import('@/views/Users')
 const User = () => import('@/views/User')
+const Client = () => import('@/views/adm/ClientDetail')
 
 //import Hello from '@/views/Hello'
 //import Service from '@/views/Service'
@@ -43,12 +44,12 @@ function configRoutes() {
       name: 'Home',
       component: TheContainer,
       meta: {
-         requiresAuth: true
+        requiresAuth: true
       },
       children: [
         {
-          path: 'dashboard',
-          name: 'Dashboard',
+          path: '',
+          name: 'dashboard',
           component: Dashboard
         },
         {
@@ -88,31 +89,26 @@ function configRoutes() {
       },
       children: [
         {
-          path: '404',
+          path: '/404',
           name: 'Page404',
           component: Page404
         },
         {
-          path: '500',
+          path: '/500',
           name: 'Page500',
           component: Page500
         },
         {
-          path: 'login',
+          path: '/login',
           name: 'Login',
           component: Login
         },
         {
-          path: 'register',
+          path: '/register',
           name: 'Register',
           component: Register
         }
       ]
-    }, {
-      path: '/login',
-      name: 'Login',
-      component: Login
-
     },
 
 

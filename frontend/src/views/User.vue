@@ -3,19 +3,18 @@
     <CCard>
       <CCardHeader>Create User</CCardHeader>
       <CCardBody>
-        
         <CInput placeholder="first name" autocomplete="first" v-model="user.firstName">
           <template #prepend-content>
             <CIcon name="cil-user" />
           </template>
         </CInput>
-        
-        <CInput placeholder="last name" autocomplete="last"  v-model="user.lastName">
+
+        <CInput placeholder="last name" autocomplete="last" v-model="user.lastName">
           <template #prepend-content>
             <CIcon name="cil-user" />
           </template>
         </CInput>
-        
+
         <CButton color="success" class="px-4" @click="createNewUser()">Create User</CButton>
 
         <div v-if="showResponse">
@@ -49,42 +48,44 @@ export default {
       user: {
         lastName: "",
         firstName: "",
-        id: 0
+        id: 0,
       },
       showResponse: false,
       retrievedUser: {},
-      showRetrievedUser: false
+      showRetrievedUser: false,
     };
   },
   methods: {
     // Fetches posts when the component is created.
     createNewUser() {
       api
-        .createUser(this.user.firstName, this.user.lastName)
-        .then(response => {
+        .createUser(this.user.lastName, this.user.firstName)
+        .then((response) => {
           // JSON responses are automatically parsed.
           this.response = response.data;
-          this.user.id = response.data;
+          //this.user.id = response.data;
           console.log("Created new User with Id " + response.data);
           this.showResponse = true;
         })
-        .catch(e => {
+        .catch((e) => {
           this.errors.push(e);
         });
     },
     retrieveUser() {
+      console.log("ydf");
       api
         .getUser(this.user.id)
-        .then(response => {
+        .then((response) => {
           // JSON responses are automatically parsed.
+          console.log("--.>" + response.data);
           this.retrievedUser = response.data;
           this.showRetrievedUser = true;
         })
-        .catch(e => {
+        .catch((e) => {
           this.errors.push(e);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 
