@@ -6,14 +6,18 @@
           <CCardHeader>Users</CCardHeader>
 
           <CCardBody>
-            <CButton color="primary" @click="loadUsers()">Load User List</CButton>
             <CDataTable
               class="mb-0 table-outline"
-              hover
               :items="tableItems"
               :fields="tableFields"
               head-color="light"
-              no-sorting
+              column-filter
+              table-filter
+              items-per-page-select
+              :items-per-page="5"
+              hover
+              sorter
+              pagination
             >
               <td slot="avatar" class="text-center" slot-scope="{item}">
                 <div class="c-avatar">
@@ -32,9 +36,9 @@
       </CCol>
     </CRow>
 
-        <CRow>
+    <CRow>
       <CCol md="12">
-        <hellocomp  hellomsg="Testparam" />
+        <hellocomp hellomsg="Testparam" />
       </CCol>
     </CRow>
   </div>
@@ -78,6 +82,9 @@ export default {
       //   }
       // ];
     },
+  },
+  beforeMount() {
+    this.loadUsers();
   },
 };
 </script>
