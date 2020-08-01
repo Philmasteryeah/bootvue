@@ -16,6 +16,8 @@ const Register = () => import('@/views/pages/Register')
 // Users
 const Users = () => import('@/views/Users')
 const User = () => import('@/views/User')
+const Hello = () => import('@/views/Hello')
+const Home = () => import('@/views/Home')
 const Client = () => import('@/views/adm/ClientDetail')
 
 //import Hello from '@/views/Hello'
@@ -40,27 +42,37 @@ function configRoutes() {
   return [
     {
       path: '/',
-      redirect: '/dashboard',
-      name: 'Home',
+      redirect: '/',
+
       component: TheContainer,
       meta: {
         requiresAuth: true
       },
       children: [
         {
-          path: '',
-          name: 'dashboard',
+          path: '/',
+          name: 'Home',
+          component: Home
+        },
+        {
+          path: 'dashboard',
+          name: 'Dashboard',
           component: Dashboard
         },
         {
+          path: 'hello',
+          name: 'Hello',
+          component: Hello
+        },
+        {
+          path: 'client',
+          name: 'Client',
+          component: Client
+        },
+        {
           path: 'users',
-          meta: {
-            label: 'Users'
-          },
           component: {
-            render(c) {
-              return c('router-view')
-            }
+            render(c) { return c('router-view') }
           },
           children: [
             {
@@ -82,7 +94,7 @@ function configRoutes() {
     },
     {
       path: '/pages',
-      redirect: '/pages/404',
+      redirect: '/404',
       name: 'Pages',
       component: {
         render(c) { return c('router-view') }

@@ -1,12 +1,11 @@
 <template>
-  <div class="clientDetail">
+  <div class="client">
     <CCard>as</CCard>
   </div>
 </template>
 
 <script>
 export default {
-  name: "clientDetail",
-  components: {},
+  name: "Client",
 };
 </script>

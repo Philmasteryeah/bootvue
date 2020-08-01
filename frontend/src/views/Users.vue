@@ -54,7 +54,7 @@ export default {
     return {
       selected: "Month",
       tableItems: [],
-      tableFields: [{ key: "firstName" }, { key: "lastName" }],
+      tableFields: [{ key: "id" }, { key: "firstName" }, { key: "lastName" }],
     };
   },
   methods: {

@@ -19,108 +19,12 @@ export default [
       {
         _name: 'CSidebarNavItem',
         name: 'Client',
-        to: '/adm/clientDetail',
+        to: '/client',
         icon: 'cil-star'
       },
       {
         _name: 'CSidebarNavTitle',
         _children: ['Lists']
-      },
-      {
-        _name: 'CSidebarNavDropdown',
-        name: 'Base',
-        route: '/base',
-        icon: 'cil-puzzle',
-        items: [
-          {
-            name: 'Breadcrumbs',
-            to: '/base/breadcrumbs'
-          },
-          {
-            name: 'Cards',
-            to: '/base/cards'
-          },
-          {
-            name: 'Carousels',
-            to: '/base/carousels'
-          }, 
-          {
-            name: 'Collapses',
-            to: '/base/collapses'
-          },
-          {
-            name: 'Forms',
-            to: '/base/forms'
-          },
-          {
-            name: 'Jumbotrons',
-            to: '/base/jumbotrons'
-          },
-          {
-            name: 'List Groups',
-            to: '/base/list-groups'
-          },
-          {
-            name: 'Navs',
-            to: '/base/navs'
-          },
-          {
-            name: 'Navbars',
-            to: '/base/navbars'
-          },
-          {
-            name: 'Paginations',
-            to: '/base/paginations'
-          },
-          {
-            name: 'Popovers',
-            to: '/base/popovers'
-          },
-          {
-            name: 'Progress Bars',
-            to: '/base/progress-bars'
-          },
-          {
-            name: 'Switches',
-            to: '/base/switches'
-          },
-          {
-            name: 'Tables',
-            to: '/base/tables'
-          },
-          {
-            name: 'Tabs',
-            to: '/base/tabs'
-          },
-          {
-            name: 'Tooltips',
-            to: '/base/tooltips'
-          }
-        ]
-      },
-      {
-        _name: 'CSidebarNavDropdown',
-        name: 'Buttons',
-        route: '/buttons',
-        icon: 'cil-cursor',
-        items: [
-          {
-            name: 'Buttons',
-            to: '/buttons/standard-buttons'
-          },
-          {
-            name: 'Button Dropdowns',
-            to: '/buttons/dropdowns'
-          },
-          {
-            name: 'Button Groups',
-            to: '/buttons/button-groups'
-          },
-          {
-            name: 'Brand Buttons',
-            to: '/buttons/brand-buttons'
-          }
-        ]
       },
       {
         _name: 'CSidebarNavItem',
@@ -135,8 +39,8 @@ export default [
       },
       {
         _name: 'CSidebarNavItem',
-        name: 'Widgets',
-        to: '/widgets',
+        name: 'Hello',
+        to: '/hello',
         icon: 'cil-calculator'
       },
       {
@@ -155,19 +59,19 @@ export default [
         items: [
           {
             name: 'Login',
-            to: '/pages/login'
+            to: '/login'
           },
           {
             name: 'Register',
-            to: '/pages/register'
+            to: '/register'
           },
           {
             name: 'Error 404',
-            to: '/pages/404'
+            to: '/404'
           },
           {
             name: 'Error 500',
-            to: '/pages/500'
+            to: '/500'
           }
         ]
       }

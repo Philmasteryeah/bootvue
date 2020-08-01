@@ -52,14 +52,16 @@ public class UserServiceImpl implements UserDetailsService {
 	}
 
 	public Account save(String firstName, String lastName) {
-		Collection<GrantedAuthority> authorities = new HashSet<>();
+		Set<Authority> authorities = new HashSet<>();
 		Authority authority = new Authority();
 		authorities.add(authority);
 
-		Account account = new Account(firstName, "1", authorities);
+		Account account = new Account();
 		account.setFirstName(firstName);
 		account.setLastName(lastName);
 		account.setLogin(firstName);
+		account.setAuthorities(authorities);
+		
 
 		return userRepository.save(account);
 	}

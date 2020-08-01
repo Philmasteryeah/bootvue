@@ -18,7 +18,7 @@
         <CButton color="success" class="px-4" @click="createNewUser()">Create User</CButton>
 
         <div v-if="showResponse">
-          <h6>User created with Id: {{ response }}</h6>
+          <h6>User created with Id: {{ response.data }}</h6>
         </div>
 
         <CButton
@@ -62,8 +62,8 @@ export default {
         .createUser(this.user.lastName, this.user.firstName)
         .then((response) => {
           // JSON responses are automatically parsed.
-          this.response = response.data;
-          //this.user.id = response.data;
+          this.response = response;
+          this.user.id = response.data;
           console.log("Created new User with Id " + response.data);
           this.showResponse = true;
         })
