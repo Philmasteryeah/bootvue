@@ -8,13 +8,13 @@
               <CForm>
                 <h1>Register</h1>
                 <p class="text-muted">Create your account</p>
-                <CInput placeholder="Username" autocomplete="username">
+                <CInput placeholder="Username" autocomplete="username" v-model="user.username">
                   <template #prepend-content>
                     <CIcon name="cil-user" />
                   </template>
                 </CInput>
-                <CInput placeholder="Email" autocomplete="email" prepend="@" />
-                <CInput placeholder="Password" type="password" autocomplete="new-password">
+                <CInput placeholder="Email" autocomplete="email" prepend="@" v-model="user.email"/>
+                <CInput placeholder="Password" type="password" autocomplete="new-password" v-model="user.password">
                   <template #prepend-content>
                     <CIcon name="cil-lock-locked" />
                   </template>
@@ -29,7 +29,7 @@
                     <CIcon name="cil-lock-locked" />
                   </template>
                 </CInput>
-                <CButton color="success" block>Create Account</CButton>
+                <CButton color="success" block @click="createNewUser()">Create Account</CButton>
               </CForm>
             </CCardBody>
             <CCardFooter class="p-4">
@@ -50,7 +50,44 @@
 </template>
 
 <script>
+import api from "../backend-api";
+
 export default {
   name: "Register",
+
+  data() {
+    return {
+      response: [],
+      errors: [],
+      user: {
+        username: "",
+        password: "",
+        email: "",
+        id: 0,
+      },
+      showResponse: false,
+      retrievedUser: {},
+      showRetrievedUser: false,
+    };
+  },
+
+
+  methods: {
+    // Fetches posts when the component is created.
+    createNewUser() {
+      api
+        .createUser(this.user.lastName, this.user.firstName)
+        .then((response) => {
+          // JSON responses are automatically parsed.
+          this.response = response;
+          this.user.id = response.data;
+          console.log("Created new User with Id " + response.data);
+          this.showResponse = true;
+        })
+        .catch((e) => {
+          this.errors.push(e);
+        });
+    },
+  }
 };
 </script>

@@ -2,16 +2,11 @@
   <div class="users">
     <CRow>
       <CCol md="12">
-        <usercomp />
-      </CCol>
-    </CRow>
-    <CRow>
-      <CCol md="12">
         <CCard>
           <CCardHeader>Users</CCardHeader>
 
           <CCardBody>
-            <CButton color="primary" @click="loadUsers()">Load User ssList</CButton>
+            <CButton color="primary" @click="loadUsers()">Load User List</CButton>
             <CDataTable
               class="mb-0 table-outline"
               hover
@@ -26,18 +21,20 @@
                   <span class="c-avatar-status" :class="`bg-${item.avatar.status || 'secondary'}`"></span>
                 </div>
               </td>
-              <td slot="id" slot-scope="{item}">
-                <div>{{item.id}}</div>
-              </td>
-              <td slot="firstName" slot-scope="{item}">
-                <div>{{item.firstName}}</div>
-              </td>
-              <td slot="lastName" slot-scope="{item}">
-                <div>{{item.lastName}}</div>
-              </td>
             </CDataTable>
           </CCardBody>
         </CCard>
+      </CCol>
+    </CRow>
+    <CRow>
+      <CCol md="12">
+        <usercomp />
+      </CCol>
+    </CRow>
+
+        <CRow>
+      <CCol md="12">
+        <hellocomp  hellomsg="Testparam" />
       </CCol>
     </CRow>
   </div>
@@ -46,15 +43,21 @@
 <script>
 import api from "./backend-api";
 import usercomp from "./User";
+import hellocomp from "./Hello";
 
 export default {
-  name: "users",
-  components: { usercomp },
+  name: "Users",
+  components: { usercomp, hellocomp },
   data() {
     return {
       selected: "Month",
       tableItems: [],
-      tableFields: [{ key: "id" }, { key: "firstName" }, { key: "lastName" }],
+      tableFields: [
+        { key: "id" },
+        { key: "username" },
+        { key: "firstName" },
+        { key: "lastName" },
+      ],
     };
   },
   methods: {

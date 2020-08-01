@@ -316,7 +316,7 @@
 
 <script>
 export default {
-  name: "Dashboard",
+  name: "Test",
   components: {},
   data() {
     return {

@@ -1,14 +1,13 @@
 <template>
   <div class="hello">
-    <img src="./../assets/spring-boot-vuejs-logo.png" />
     <h1>{{ hellomsg }}</h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "hello",
-  props: { hellomsg: { type: String, required: true } },
+  name: "Hello",
+  props: { hellomsg: { type: String, required: false } },
 };
 </script>
 
