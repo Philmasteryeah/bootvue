@@ -1,18 +1,13 @@
 package org.philmaster.bootvue.service;
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.philmaster.bootvue.exception.UserNotFoundException;
-import org.philmaster.bootvue.model.Authority;
 import org.philmaster.bootvue.model.Account;
-import org.philmaster.bootvue.repository.UserRepository;
+import org.philmaster.bootvue.repository.AccountRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -25,10 +20,10 @@ public class UserServiceImpl implements UserDetailsService {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired
-	private UserRepository userRepository;
+	private AccountRepository accountRepository;
 
 	public Account findById(long id) {
-		return userRepository.findById(id)
+		return accountRepository.findById(id)
 				.map(user -> {
 					LOGGER.info("Reading user with id " + id + " from database.");
 					return user;
@@ -39,31 +34,31 @@ public class UserServiceImpl implements UserDetailsService {
 
 	public Account findbyUsername(String username) {
 		// TODO
-		return userRepository.findByFirstName(username)
+		return accountRepository.findByFirstName(username)
 				.get(0);
 	}
 
 	public List<Account> getAllUsers() {
-		return userRepository.getAllUsers();
+		return accountRepository.getAllUsers();
 	}
 
 	public Account save(Account user) {
-		return userRepository.save(user);
+		return accountRepository.save(user);
 	}
 
 	public Account save(String firstName, String lastName) {
-		Set<Authority> authorities = new HashSet<>();
-		Authority authority = new Authority();
-		authorities.add(authority);
+//		Set<Authority> authorities = new HashSet<>();
+//		Authority authority = new Authority();
+//		authorities.add(authority);
 
 		Account account = new Account();
 		account.setFirstName(firstName);
 		account.setLastName(lastName);
 		account.setLogin(firstName);
-		account.setAuthorities(authorities);
+		//account.setAuthorities(authorities);
 		
 
-		return userRepository.save(account);
+		return accountRepository.save(account);
 	}
 
 	@Override

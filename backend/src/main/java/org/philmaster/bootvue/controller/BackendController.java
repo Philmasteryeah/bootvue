@@ -3,6 +3,8 @@ package org.philmaster.bootvue.controller;
 import java.util.List;
 
 import org.philmaster.bootvue.model.Account;
+import org.philmaster.bootvue.model.Authority;
+import org.philmaster.bootvue.service.AuthorityService;
 import org.philmaster.bootvue.service.UserServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +32,9 @@ public class BackendController {
 
 	@Autowired
 	public UserServiceImpl userService;
+	
+	@Autowired
+	public AuthorityService authorityService;
 
 	@RequestMapping("/login")
 	public RedirectView login() {
@@ -46,11 +51,18 @@ public class BackendController {
 
 		return HELLO_TEXT;
 	}
-
+	
 	@GetMapping(produces = "application/json", path = "/users")
 	public @ResponseBody List<Account> getUsers() {
 		LOG.info("GET called on /users resource");
 		return userService.getAllUsers();
+	}
+
+
+	@GetMapping(produces = "application/json", path = "/authorities")
+	public @ResponseBody List<Authority> getAuthorities() {
+		LOG.info("GET called on /authorities resource");
+		return authorityService.getAllAuthorities();
 	}
 
 	@PostMapping(path = "/user/{lastName}/{firstName}")

@@ -3,13 +3,11 @@ package org.philmaster.bootvue.model;
 import static org.philmaster.bootvue.config.Constants.EMAIL_REGEX;
 
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +23,6 @@ import javax.validation.constraints.Size;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 
 /**
  * A user.
@@ -93,7 +90,7 @@ public class Account extends User {
 	private Set<Authority> authorities = new HashSet<>();
 
 	public Account() {
-		super("test", "1", Collections.singleton(new Authority()));
+		super("NEEDED FOR POJO", "1", Collections.singleton(new Authority()));
 	}
 
 	public Account(String username, String password, Collection<? extends GrantedAuthority> authorities) {

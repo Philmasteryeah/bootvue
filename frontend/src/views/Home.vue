@@ -3,9 +3,10 @@
     <h1>
       <CCard variant="success">YEAH you made it!</CCard>
     </h1>
+    <CButton color="primary" class="px-4" @click="test()">load auths</CButton>
     <h5>If you're able to read this, you've successfully logged in and redirected to this protected site :)</h5>
-        <CButton color="success" class="px-4" @click="getSecuredTextFromBackend()">Call the secured API</CButton>
-    
+    <CButton color="success" class="px-4" @click="getSecuredTextFromBackend()">Call the secured API</CButton>
+
     <p></p>
 
     <div v-if="securedApiCallSuccess">
@@ -33,6 +34,7 @@ export default {
       backendResponse: "",
       securedApiCallSuccess: false,
       errors: null,
+      tableItems: [],
     };
   },
   methods: {
@@ -52,6 +54,17 @@ export default {
         .catch((error) => {
           console.log("Error: " + error);
           this.errors = error;
+        });
+    },
+    test() {
+      api
+        .getAuthorities()
+        .then((response) => {
+          this.tableItems = response.data;
+          console.log(response);
+        })
+        .catch((error) => {
+          //this.errors.push(error);
         });
     },
   },

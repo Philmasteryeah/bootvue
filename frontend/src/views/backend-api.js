@@ -13,6 +13,9 @@ export default {
     getUsers() {
         return AXIOS.get(`/users`);
     },
+    getAuthorities() {
+        return AXIOS.get(`/authorities`);
+    },
     getUser(userId) {
         return AXIOS.get(`/user/` + userId);
     },
