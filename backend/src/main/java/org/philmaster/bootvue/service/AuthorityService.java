@@ -26,4 +26,16 @@ public class AuthorityService {
 				.collect(Collectors.toList());
 	}
 
+	public Authority save(String name) {
+//		Set<Authority> authorities = new HashSet<>();
+//		Authority authority = new Authority();
+//		authorities.add(authority);
+
+		Authority authority = new Authority();
+		authority.setName(name);
+		// account.setAuthorities(authorities);
+
+		return authorityRepository.save(authority);
+	}
+
 }

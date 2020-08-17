@@ -36,22 +36,20 @@
                   </div>
                 </td>
               </template>
-                <template #show_details="{item, index}">
-        <td class="py-2">
-          <CButton
-            color="primary"
-            variant="outline"
-            square
-            size="sm"
-            @click="toggleDetails(item, index)"
-          >
-            {{Boolean(item._toggled) ? 'Hide' : 'Show'}}
-          </CButton>
-        </td>
-      </template>
+              <template #show_details="{item, index}">
+                <td class="py-2">
+                  <CButton
+                    color="primary"
+                    variant="outline"
+                    square
+                    size="sm"
+                    @click="toggleDetails(item, index)"
+                  >{{Boolean(item._toggled) ? 'Hide' : 'Show'}}</CButton>
+                </td>
+              </template>
               <template #details="{item}">
-                  <CButton @click="modalEdit = true" class="px-4" color="info">Edit</CButton>
-         <CModal title="Edit" color="success" :show.sync="modalEdit">
+                <CButton @click="modalEdit = true" class="px-4" color="info">Edit</CButton>
+                <CModal title="Edit" color="success" :show.sync="modalEdit">
                   <CCardBody>
                     <CMedia :aside-image-props="{ height: 102 }">
                       <h4>{{item.firstName}}</h4>
@@ -60,7 +58,7 @@
                       <CButton size="sm" color="danger" class="ml-1">Delete</CButton>
                     </CMedia>
                   </CCardBody>
-         </CModal>
+                </CModal>
               </template>
             </CDataTable>
           </CCardBody>
@@ -101,7 +99,7 @@ export default {
         { key: "id" },
         { key: "username" },
         { key: "firstName" },
-        { key: "lastName" }
+        { key: "lastName" },
       ],
     };
   },

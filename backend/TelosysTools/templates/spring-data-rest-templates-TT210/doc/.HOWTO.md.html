@@ -1,0 +1,530 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>D:\workspaces\wks43-Telosys-Dev-Templates\dev\TelosysTools\templates\spring-data-rest-templates-TT210\doc\.HOWTO.md.html</title>
+
+
+<style type="text/css">
+body {
+	color: #333;
+	font: 13px/1.4 Helvetica,arial,freesans,clean,sans-serif;
+}
+
+.markdown-body {
+    border: 1px solid #CACACA;
+    padding: 30px;
+    font-size: 15px;
+    line-height: 1.7;
+    word-wrap: break-word;
+}
+.markdown-body > *:first-child {
+    margin-top: 0 !important;
+}
+.markdown-body > *:last-child {
+    margin-bottom: 0 !important;
+}
+.markdown-body a.absent {
+    color: #C00;
+}
+.markdown-body a.anchor {
+    bottom: 0;
+    cursor: pointer;
+    display: block;
+    left: 0;
+    margin-left: -30px;
+    padding-left: 30px;
+    padding-right: 6px;
+    position: absolute;
+    top: 0;
+}
+.markdown-body a.anchor:focus {
+    outline: medium none;
+}
+.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4, .markdown-body h5, .markdown-body h6 {
+    cursor: text;
+    font-weight: bold;
+    line-height: 1.7;
+    margin: 1em 0 15px;
+    padding: 0;
+    position: relative;
+}
+
+.markdown-body h1 .octicon-link, .markdown-body h2 .octicon-link, .markdown-body h3 .octicon-link, .markdown-body h4 .octicon-link, .markdown-body h5 .octicon-link, .markdown-body h6 .octicon-link {
+    color: #000;
+    display: none;
+}
+.markdown-body h1:hover a.anchor, .markdown-body h2:hover a.anchor, .markdown-body h3:hover a.anchor, .markdown-body h4:hover a.anchor, .markdown-body h5:hover a.anchor, .markdown-body h6:hover a.anchor {
+    line-height: 1;
+    margin-left: -22px;
+    padding-left: 0;
+    text-decoration: none;
+    top: 15%;
+}
+.markdown-body h1:hover a.anchor .octicon-link, .markdown-body h2:hover a.anchor .octicon-link, .markdown-body h3:hover a.anchor .octicon-link, .markdown-body h4:hover a.anchor .octicon-link, .markdown-body h5:hover a.anchor .octicon-link, .markdown-body h6:hover a.anchor .octicon-link {
+    display: inline-block;
+}
+.markdown-body h1 tt, .markdown-body h1 code, .markdown-body h2 tt, .markdown-body h2 code, .markdown-body h3 tt, .markdown-body h3 code, .markdown-body h4 tt, .markdown-body h4 code, .markdown-body h5 tt, .markdown-body h5 code, .markdown-body h6 tt, .markdown-body h6 code {
+    font-size: inherit;
+}
+.markdown-body h1 {
+    border-bottom: 1px solid #DDD;
+    font-size: 2.5em;
+}
+.markdown-body h2 {
+    border-bottom: 1px solid #EEE;
+    font-size: 2em;
+}
+.markdown-body h3 {
+    font-size: 1.5em;
+}
+.markdown-body h4 {
+    font-size: 1.2em;
+}
+.markdown-body h5 {
+    font-size: 1em;
+}
+.markdown-body h6 {
+    color: #777;
+    font-size: 1em;
+}
+.markdown-body p, .markdown-body blockquote, .markdown-body ul, .markdown-body ol, .markdown-body dl, .markdown-body table, .markdown-body pre {
+    margin: 15px 0;
+}
+.markdown-body ul, .markdown-body ol {
+    padding-left: 30px;
+}
+.markdown-body ul.no-list, .markdown-body ol.no-list {
+    list-style-type: none;
+    padding: 0;
+}
+.markdown-body ul ul, .markdown-body ul ol, .markdown-body ol ol, .markdown-body ol ul {
+    margin-bottom: 0;
+    margin-top: 0;
+}
+.markdown-body dl {
+    padding: 0;
+}
+.markdown-body dl dt {
+    font-size: 14px;
+    font-style: italic;
+    font-weight: bold;
+    margin-top: 15px;
+    padding: 0;
+}
+.markdown-body dl dd {
+    margin-bottom: 15px;
+    padding: 0 15px;
+}
+.markdown-body blockquote {
+    border-left: 4px solid #DDD;
+    color: #777;
+    padding: 0 15px;
+}
+.markdown-body blockquote > *:first-child {
+    margin-top: 0;
+}
+.markdown-body blockquote > *:last-child {
+    margin-bottom: 0;
+}
+.markdown-body table {
+    display: block;
+    overflow: auto;
+    width: 100%;
+    border-collapse: collapse;
+}
+.markdown-body table th {
+    font-weight: bold;
+}
+.markdown-body table th, .markdown-body table td {
+    border: 1px solid #DDD;
+    padding: 6px 13px;
+}
+.markdown-body table tr {
+    background-color: #FFF;
+    border-top: 1px solid #CCC;
+}
+.markdown-body table tr:nth-child(2n) {
+    background-color: #F8F8F8;
+}
+.markdown-body img {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+    max-width: 100%;
+    border: 0px;
+}
+.markdown-body span.frame {
+    display: block;
+    overflow: hidden;
+}
+.markdown-body span.frame > span {
+    border: 1px solid #DDD;
+    display: block;
+    float: left;
+    margin: 13px 0 0;
+    overflow: hidden;
+    padding: 7px;
+    width: auto;
+}
+.markdown-body span.frame span img {
+    display: block;
+    float: left;
+}
+.markdown-body span.frame span span {
+    clear: both;
+    color: #333;
+    display: block;
+    padding: 5px 0 0;
+}
+.markdown-body span.align-center {
+    clear: both;
+    display: block;
+    overflow: hidden;
+}
+.markdown-body span.align-center > span {
+    display: block;
+    margin: 13px auto 0;
+    overflow: hidden;
+    text-align: center;
+}
+.markdown-body span.align-center span img {
+    margin: 0 auto;
+    text-align: center;
+}
+.markdown-body span.align-right {
+    clear: both;
+    display: block;
+    overflow: hidden;
+}
+.markdown-body span.align-right > span {
+    display: block;
+    margin: 13px 0 0;
+    overflow: hidden;
+    text-align: right;
+}
+.markdown-body span.align-right span img {
+    margin: 0;
+    text-align: right;
+}
+.markdown-body span.float-left {
+    display: block;
+    float: left;
+    margin-right: 13px;
+    overflow: hidden;
+}
+.markdown-body span.float-left span {
+    margin: 13px 0 0;
+}
+.markdown-body span.float-right {
+    display: block;
+    float: right;
+    margin-left: 13px;
+    overflow: hidden;
+}
+.markdown-body span.float-right > span {
+    display: block;
+    margin: 13px auto 0;
+    overflow: hidden;
+    text-align: right;
+}
+.markdown-body code, .markdown-body tt {
+    background-color: #F8F8F8;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    margin: 0 2px;
+    padding: 0 5px;
+}
+.markdown-body code {
+    white-space: nowrap;
+}
+.markdown-body pre > code {
+    border: medium none;
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+}
+.markdown-body .highlight pre, .markdown-body pre {
+    background-color: #F8F8F8;
+    border: 1px solid #DDD;
+    border-radius: 3px;
+    font-size: 13px;
+    line-height: 19px;
+    overflow: auto;
+    padding: 6px 10px;
+}
+.markdown-body pre code, .markdown-body pre tt {
+    border: medium none;
+    margin: 0;
+    padding: 0;
+    word-wrap: normal;
+}
+
+pre, code, tt {
+    font-family: Consolas,"Liberation Mono",Courier,monospace;
+    font-size: 12px;
+}
+
+.highlight {
+    background: #FFF;
+}
+.highlight .k,
+.highlight .o,
+.highlight .cp,
+.highlight .cs,
+.highlight .gs,
+.highlight .gu,
+.highlight .kc,
+.highlight .kd,
+.highlight .kn,
+.highlight .kp,
+.highlight .kr,
+.highlight .kt,
+.highlight .nc,
+.highlight .ne,
+.highlight .nf,
+.highlight .ow {
+    font-weight: bold;
+}
+.highlight .gd,
+.highlight .gd .x,
+.highlight .gi,
+.highlight .gi .x,
+.type-csharp .highlight .nf,
+.type-csharp .highlight .nn {
+    color: #000;
+}
+.highlight .c,
+.highlight .cm,
+.highlight .c1 {
+    color: #998;
+    font-style: italic;
+}
+.highlight .err {
+    background-color: #E3D2D2;
+    color: #A61717;
+}
+.highlight .cp,
+.highlight .cs {
+    color: #999;
+}
+.highlight .cs,
+.highlight .ge {
+    font-style: italic;
+}
+.highlight .gd {
+    background-color: #FDD;
+}
+.highlight .gd .x {
+    background-color: #FAA;
+}
+.highlight .gr,
+.highlight .gt {
+    color: #A00;
+}
+.highlight .gh {
+    color: #999;
+}
+.highlight .gi {
+    background-color: #DFD;
+}
+.highlight .gi .x {
+    background-color: #AFA;
+}
+.highlight .go {
+    color: #888;
+}
+.highlight .gp,
+.highlight .nn {
+    color: #555;
+}
+.highlight .gu,
+.highlight .ni {
+    color: #800080;
+}
+.highlight .kt {
+    color: #458;
+}
+.highlight .m {
+    color: #099;
+}
+.highlight .s {
+    color: #D14;
+}
+.highlight .n {
+    color: #333;
+}
+.highlight .na,
+.highlight .no,
+.highlight .nv,
+.highlight .vc,
+.highlight .vg,
+.highlight .vi {
+    color: #008080;
+}
+.highlight .nb {
+    color: #0086B3;
+}
+.highlight .nc {
+    color: #458;
+}
+.highlight .ne,
+.highlight .nf {
+    color: #900;
+}
+.highlight .nt {
+    color: #000080;
+}
+.highlight .w {
+    color: #BBB;
+}
+.highlight .mf,
+.highlight .mh,
+.highlight .mi,
+.highlight .mo {
+    color: #099;
+}
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .s2,
+.highlight .se,
+.highlight .sh,
+.highlight .si,
+.highlight .sx,
+.highlight .s1 {
+    color: #D14;
+}
+.highlight .sr {
+    color: #009926;
+}
+.highlight .ss {
+    color: #990073;
+}
+.highlight .bp {
+    color: #999;
+}
+.highlight .il {
+    color: #099;
+}
+.highlight .gc {
+    background-color: #EAF2F5;
+    color: #999;
+}
+.type-csharp .highlight .k,
+.type-csharp .highlight .kt {
+    color: #00F;
+}
+.type-csharp .highlight .nf {
+    font-weight: normal;
+}
+.type-csharp .highlight .nc {
+    color: #2B91AF;
+}
+.type-csharp .highlight .s,
+.type-csharp .highlight .sc {
+    color: #A31515;
+}
+
+</style>
+
+
+<script type="text/javascript">
+
+function getDocumentScrollTop() 
+{
+   var res = document.body.scrollTop || document.documentElement.scrollTop || window.pageYOffset || 0;
+   // alert(res);
+   return res;
+}
+
+function setDocumentScrollTop(ypos) 
+{
+	window.scrollTo(0, ypos);
+}
+
+</script>
+
+
+</head>
+<body class="markdown-body">
+<h1> <a name="tutorial-for-the-spring-data-rest-telosys-bundle" class="anchor" href="..md.html#tutorial-for-the-spring-data-rest-telosys-bundle"><span class="octicon octicon-link"></span></a>Tutorial for the Spring Data REST Telosys bundle</h1> 
+<h2> <a name="note" class="anchor" href="..md.html#note"><span class="octicon octicon-link"></span></a>Note</h2> 
+<p>For this tutorial, we start from a derby database. This database manage a bookstore (Book, Author, Reviews etc ..). You can follow this tutorial with your own database.<br /> If you want to start with the same db : <a href="https://dl.dropboxusercontent.com/u/52079610/BookstoreDB_v2_Derby10.9.zip">https://dl.dropboxusercontent.com/u/52079610/BookstoreDB_v2_Derby10.9.zip</a><br /> The database name is bookstore and user/pwd is root/admin.</p> 
+<h2> <a name="1-project-creation" class="anchor" href="..md.html#1-project-creation"><span class="octicon octicon-link"></span></a>1. Project Creation</h2> 
+<ul> 
+ <li>You can start by create a new <strong>maven</strong> project or start on an existing one.</li> 
+ <li>The packaging of this project must be <strong>&quot;war&quot;</strong> </li> 
+ <li><p>The java <strong>compliance level must be 1.7</strong></p></li> 
+</ul>
+<h2> <a name="2-initialize-telosys-tools" class="anchor" href="..md.html#2-initialize-telosys-tools"><span class="octicon octicon-link"></span></a>2. Initialize Telosys Tools</h2> 
+<ul> 
+ <li>Open the properties window of your project</li> 
+ <li>In the left entries, select <strong>&quot;Telosys Tools&quot;</strong> and fill all project informations in &quot;General&quot;, &quot;Packages&quot; and &quot;Folders&quot; tab (right side)</li> 
+ <li>Click on the <strong>&quot;Apply&quot;</strong> button (don't forget this step!)</li> 
+ <li>Click on <strong>&quot;Init Telosys Tools&quot;</strong> in the &quot;General&quot; tab =&gt; <strong>The &quot;Telosys Tools&quot; directory is now added in the project</strong> </li> 
+ <li>In the &quot;download&quot; tab, download from this Github repository the <strong>&quot;spring-data-rest-templates-TT210&quot;</strong> </li> 
+ <li>Click on <strong>&quot;Download selected bundle(s)&quot;</strong> and verify the checkbox <strong>&quot;Install downloaded bundle(s)&quot;</strong> is checked.</li> 
+ <li>After this, close the project properties window.</li> 
+ <li><p>In the project, you should now have the <strong>&quot;spring-data-rest-templates-TT210&quot;</strong> directory under <strong>&quot;TelosysTools/templates&quot;</strong></p></li> 
+</ul>
+<h2> <a name="3-update-maven-dependencies" class="anchor" href="..md.html#3-update-maven-dependencies"><span class="octicon octicon-link"></span></a>3. Update maven dependencies</h2> 
+<ul> 
+ <li>Under the <strong>&quot;spring-data-rest-templates-TT210&quot;</strong> directory, open the <strong>/misc/maven-pom.txt</strong> </li> 
+ <li>Copy and paste the dependencies to your project pom (if they are not already exist)</li> 
+ <li><p>For this example, we use a dependency for the Derby driver. Adapt it to your database if needed.</p></li> 
+</ul>
+<h2> <a name="4-database-repository-generation" class="anchor" href="..md.html#4-database-repository-generation"><span class="octicon octicon-link"></span></a>4. Database repository generation</h2> 
+<ul> 
+ <li>Open the database configuration file : &quot;Telosys Tools / databases.dbcfg&quot;</li> 
+ <li>The database editor is displayed</li> 
+ <li>Add a new connection to your database</li> 
+ <li>Test the connection to get &quot;Connection is OK&quot;</li> 
+ <li>Click on &quot;Meta-data&quot; tab, fill the schema name and click on &quot;Get tables&quot; to see the tables of your database.</li> 
+ <li><p>If all is OK, click on &quot;Generate repository&quot; button to generate a new &quot;.dbrep&quot; file in the &quot;TelosysTools&quot; directory </p></li> 
+</ul>
+<h2> <a name="5-generate-the-rest-api" class="anchor" href="..md.html#5-generate-the-rest-api"><span class="octicon octicon-link"></span></a>5. Generate the REST API</h2> 
+<ul> 
+ <li>Click on the <strong>&quot;Bulk generation&quot;</strong> tab</li> 
+ <li>In the entities list, <strong>select all entities</strong> you want to manage (be careful for links, <strong>all linked entities must be selected</strong>)</li> 
+ <li>Select the <strong>&quot;spring-data-rest-templates-TT210&quot;</strong> templates bundle in the dropdown list =&gt; all templates are now visible in right list</li> 
+ <li>Select all templates and select <strong>&quot;copy static resources&quot;</strong> </li> 
+ <li>Click on the <strong>&quot;Generate&quot;</strong> button</li> 
+ <li>You should have a successfull message</li> 
+ <li><p>The project source code <strong>should compile successfully</strong></p></li> 
+</ul>
+<h2> <a name="6-the-spring-configuration" class="anchor" href="..md.html#6-the-spring-configuration"><span class="octicon octicon-link"></span></a>6. The Spring configuration</h2> 
+<ul> 
+ <li>For this project, the spring configuration was performed in a java way.</li> 
+ <li> <strong>RestWebApplicationInitilizer</strong> : Servlet context initilization</li> 
+ <li> <strong>JpaRepositoryConfig</strong> : Database access configuration</li> 
+ <li><p><strong>ApplicationConfig</strong> : Declaration of MessageSource, validators, converters ...</p></li> 
+</ul>
+<h2> <a name="7-the-jpa-entities" class="anchor" href="..md.html#7-the-jpa-entities"><span class="octicon octicon-link"></span></a>7. The JPA Entities</h2> 
+<ul> 
+ <li><p>The JPA Entities were generated under the package you have enter in the Telosys Tools properties window.</p></li> 
+</ul>
+<h2> <a name="8-the-spring-data-jpa-repositories" class="anchor" href="..md.html#8-the-spring-data-jpa-repositories"><span class="octicon octicon-link"></span></a>8. The Spring data JPA repositories</h2> 
+<ul> 
+ <li>The JPA Repositories were generated under the &quot;repository&quot; package</li> 
+ <li><p>Search methods for the Many-to-One relationships were have also been generated</p></li> 
+</ul>
+<h2> <a name="9-converters" class="anchor" href="..md.html#9-converters"><span class="octicon octicon-link"></span></a>9. Converters</h2> 
+<ul> 
+ <li><p>Use for entity how have composite primary key</p></li> 
+</ul>
+<h2> <a name="10-validators" class="anchor" href="..md.html#10-validators"><span class="octicon octicon-link"></span></a>10. Validators</h2> 
+<ul> 
+ <li>Each entity had an associated validator wich is executed before the update</li> 
+</ul>
+<h2> <a name="getting-started-" class="anchor" href="..md.html#getting-started-"><span class="octicon octicon-link"></span></a>Getting Started </h2> 
+<p>You can deploy the project under your server or launch <code>mvn tomcat7:run</code><br /> To browse the resources, here are several ways to:</p> 
+<ul> 
+ <li>Access URL from your web browser (http://localhost:8989/)</li> 
+ <li>Use Postman extension for Chrome</li> 
+ <li>Launch the spring rest-shell (see : <a href="https://github.com/spring-projects/rest-shell">https://github.com/spring-projects/rest-shell</a> </li> 
+</ul>
+<p>Enjoy!</p>
+</body>
+</html>

@@ -15,6 +15,8 @@
           </template>
         </CInput>
 
+        
+
         <CButton color="success" class="px-4" @click="createNewUser()">Create User</CButton>
 
         <div v-if="showResponse">

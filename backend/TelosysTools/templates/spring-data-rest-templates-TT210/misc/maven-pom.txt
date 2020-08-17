@@ -1,0 +1,125 @@
+<build>
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<configuration>
+				<source>1.7</source>
+				<target>1.7</target>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-war-plugin</artifactId>
+			<configuration>
+				<failOnMissingWebXml>false</failOnMissingWebXml>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>org.apache.tomcat.maven</groupId>
+			<artifactId>tomcat7-maven-plugin</artifactId>
+			<version>2.2</version>
+			<configuration>
+				<path>/</path>
+				<port>8989</port>
+			</configuration>
+		</plugin>
+	</plugins>
+</build>
+
+<!-- Dependencies for pom.xml -->
+<dependencies>
+
+	<!-- DATABASE JDBC DRIVER ( example with DERBY, to be replaced by the appropriated 
+		driver ) -->
+	<dependency>
+		<groupId>org.apache.derby</groupId>
+		<artifactId>derbyclient</artifactId>
+		<version>10.9.1.0</version>
+	</dependency>
+
+	<!-- Logging -->
+	<!-- ################################################### -->
+	<dependency>
+		<groupId>ch.qos.logback</groupId>
+		<artifactId>logback-classic</artifactId>
+		<version>1.0.13</version>
+	</dependency>
+
+	<!-- Spring Data -->
+	<!-- ################################################### -->
+	<dependency>
+		<groupId>org.springframework.data</groupId>
+		<artifactId>spring-data-rest-webmvc</artifactId>
+		<version>2.0.1.RELEASE</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.springframework.data</groupId>
+		<artifactId>spring-data-jpa</artifactId>
+		<version>1.5.1.RELEASE</version>
+	</dependency>
+
+	<!--  Mandatory to get around the following issue :  https://jira.springsource.org/browse/DATAREST-239-->
+	<dependency> 
+		<groupId>org.springframework.data</groupId> 
+		<artifactId>spring-data-commons</artifactId>
+		<version>1.7.0.RC1</version>
+	</dependency>
+
+	<!-- Hibernate / JPA -->
+	<!-- ################################################### -->
+	<dependency>
+		<groupId>org.hibernate.javax.persistence</groupId>
+		<artifactId>hibernate-jpa-2.0-api</artifactId>
+		<version>1.0.1.Final</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-entitymanager</artifactId>
+		<version>4.2.0.Final</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-validator</artifactId>
+		<version>4.3.1.Final</version>
+	</dependency>
+
+	<!-- Web -->
+	<!-- ################################################### -->
+	<dependency>
+		<groupId>javax.servlet</groupId>
+		<artifactId>javax.servlet-api</artifactId>
+		<version>3.0.1</version>
+		<scope>provided</scope>
+	</dependency>
+
+	<!-- Tests -->
+	<!-- ################################################### -->
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.11</version>
+		<scope>test</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<version>3.2.3.RELEASE</version>
+		<scope>test</scope>
+	</dependency>
+
+</dependencies>
+
+<repositories>
+	<repository>
+		<id>spring-milestones</id>
+		<name>Spring Milestones</name>
+		<url>http://repo.spring.io/milestone</url>
+		<snapshots>
+			<enabled>false</enabled>
+		</snapshots>
+	</repository>
+</repositories>

@@ -16,6 +16,9 @@ export default {
     getAuthorities() {
         return AXIOS.get(`/authorities`);
     },
+    createAuthority(name) {
+        return AXIOS.post(`/authority/` + name);
+    },
     getUser(userId) {
         return AXIOS.get(`/user/` + userId);
     },

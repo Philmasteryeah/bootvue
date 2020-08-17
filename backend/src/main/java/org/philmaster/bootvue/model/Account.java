@@ -84,9 +84,8 @@ public class Account extends User {
 	private Instant resetDate = null;
 
 	@ManyToMany
-	@JoinTable(name = "user_authority", joinColumns = {
-			@JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = {
-					@JoinColumn(name = "authority_name", referencedColumnName = "name") })
+	@JoinTable(name = "user_authority", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
+			@JoinColumn(name = "authority_id") })
 	private Set<Authority> authorities = new HashSet<>();
 
 	public Account() {

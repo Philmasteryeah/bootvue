@@ -7,9 +7,9 @@ import java.util.stream.StreamSupport;
 import org.philmaster.bootvue.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@Repository
+@RepositoryRestResource
 public interface AccountRepository extends JpaRepository<Account, Long> {
 
 	List<Account> findByLastName(@Param("lastname") String lastname);

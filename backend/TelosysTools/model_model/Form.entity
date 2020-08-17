@@ -1,0 +1,7 @@
+// Entity Form
+
+Form {
+  id : short { @Id, @AutoIncremented }; 
+  name : string ;
+  formType: FormType;
+}

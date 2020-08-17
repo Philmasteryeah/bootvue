@@ -58,11 +58,18 @@ public class BackendController {
 		return userService.getAllUsers();
 	}
 
-
 	@GetMapping(produces = "application/json", path = "/authorities")
 	public @ResponseBody List<Authority> getAuthorities() {
 		LOG.info("GET called on /authorities resource");
 		return authorityService.getAllAuthorities();
+	}
+	
+	@PostMapping(path = "/authority/{name}")
+	@ResponseStatus(HttpStatus.CREATED)
+	public long addNewAuthority(@PathVariable("name") String name) {
+		Authority authority = authorityService.save(name);
+		LOG.info(authority.toString() + " successfully saved into DB");
+		return authority.getName().length();
 	}
 
 	@PostMapping(path = "/user/{lastName}/{firstName}")

@@ -1,0 +1,237 @@
+<!-- ============================================ -->
+<!--        TELOSYS DATABASES CONFIGURATION       -->
+<!-- ============================================ -->
+<!--
+ "databases" tag attributes :
+    . maxId       : maximum database id (0 to 100, default = 10)
+    . defaultId   : default database to use when no ID is specified ( 0 to maxId ), default : 0
+ "db" tag attributes :
+	. id       : the database id ( from 0 to maxId )
+	. name     : the symbolic name ( anything )
+	. driver   : the JDBC driver class name
+	. url      : the JDBC URL for connection
+	. typeName : the database type name ( eg "DERBY", "H2", "MYSQL", "ORACLE", etc ) 
+	. dialect  : the JPA dialect (usefull only for JPA) 
+	. isolationLevel : JDBC values ( see Java Constants in "java.sql.Connection" )
+	. poolSize       : the initial size of the pool for this database 
+ "metadata" tag attributes :
+    . catalog            : the catalog where to search the metadata ( "!" means "null" ) 
+    . schema             : the schema  where to search the metadata ( "!" means "null" )
+    . table-name-pattern : the pattern used as table name filter ( ex : "%", "A%", ... ) 
+    . table-types        : the types to retrieve, separated by blanks ( ex : "TABLE", "TABLE VIEW", ... ) 
+    . table-name-exclude : the pattern used to exclude tables
+    . table-name-include : the pattern used to include tables
+-->
+
+<databases defaultId="1" maxId="10">
+
+<!-- ============================================ -->
+<!--                     DERBY                    -->
+<!-- ============================================ -->
+<!-- The JDBC Driver is in "derbyclient.jar". -->
+<!--
+	<db id = "0" 
+		name     = "DERBY bookstore" 
+		driver   = "org.apache.derby.jdbc.ClientDriver" 
+		url      = "jdbc:derby://localhost:1527/bookstore" 
+		typeName = "DERBY"
+		dialect  = "org.hibernate.dialect.DerbyDialect"
+		isolationLevel = "" 
+		poolSize       = "10" >
+			<property name="user"      value="root" />
+			<property name="password"  value="admin" />
+			<metadata catalog="" schema="ROOT" 
+				table-name-pattern="%" table-types="TABLE  VIEW  " 
+		        table-name-exclude=""  table-name-include=""  />
+	</db>
+-->
+
+<!-- ============================================ -->
+<!--                    MYSQL                     -->
+<!-- ============================================ -->
+<!-- The JDBC Driver is in "mysql-connector-java-x.x.x-bin.jar" -->
+<!--
+	<db id = "0" 
+		name     = "MySQL bookstore" 
+		driver   = "com.mysql.jdbc.Driver" 
+		url      = "jdbc:mysql://localhost:3306/bookstore" 
+		typeName = "MYSQL"
+		dialect  = "org.hibernate.dialect.MySQLDialect"
+		isolationLevel = "TRANSACTION_REPEATABLE_READ" 
+		poolSize       = "3" >
+			<property name="user"      value="root" />
+			<property name="password"  value="" />
+			<metadata catalog=""  schema=""  
+				table-name-pattern="%" table-types="TABLE  VIEW  " 
+		        table-name-exclude=""  table-name-include=""  />
+	</db>
+-->
+
+<!-- ============================================ -->
+<!--                     H2 embedded              -->
+<!-- ============================================ -->
+<!-- The JDBC Driver is in "h2-1.3.xxx.jar". -->
+<!--
+	<db id = "0" 
+		name     = "H2 bookstore" 
+		driver   = "org.h2.Driver" 
+		url      = "jdbc:h2:mem" 
+		typeName = "H2"
+		dialect  = "org.hibernate.dialect.H2Dialect"
+		isolationLevel = "" 
+		poolSize       = "10" >
+		    <property name="user"      value="sa" />
+			<property name="password"  value="" />
+			<metadata catalog="" schema="ROOT" 
+				table-name-pattern="%" table-types="TABLE  VIEW  " 
+		        table-name-exclude=""  table-name-include=""  />
+	</db>
+-->
+
+<!-- ============================================ -->
+<!--                     H2 server                -->
+<!-- ============================================ -->
+<!-- The JDBC Driver is in "h2-1.3.xxx.jar". -->
+<!--
+	<db id = "0" 
+		name     = "H2 bookStore" 
+		driver   = "org.h2.Driver" 
+		url      = "jdbc:h2:tcp://localhost/~/test" 
+		typeName = "H2"
+		dialect  = "org.hibernate.dialect.H2Dialect"
+		isolationLevel = "" 
+		poolSize       = "10" >
+		    <property name="user"      value="sa" />
+			<property name="password"  value="" />
+			<metadata catalog="" schema="ROOT" 
+				table-name-pattern="%" table-types="TABLE  VIEW  " 
+		        table-name-exclude=""  table-name-include=""  />
+	</db>
+-->
+
+<!-- ============================================ -->
+<!--                 POSTGRESQL                   -->
+<!-- ============================================ -->
+<!--
+	<db id = "0" 
+		name     = "POSTGRESQL bookstore" 
+		driver   = "org.postgresql.Driver" 
+		url      = "jdbc:postgresql://localhost:5432/bookstore" 
+		typeName = "POSTGRESQL"
+		dialect  = "org.hibernate.dialect.PostgreSQLDialect"
+		isolationLevel = "" 
+		poolSize       = "3" >
+		    <property name="user"     value="xxxx" />
+			<property name="password" value="xxxx" />
+			<metadata catalog="" schema="" 
+				table-name-pattern="%" table-types="TABLE  VIEW  " 
+		        table-name-exclude=""  table-name-include=""  />
+	</db>
+-->
+
+<!-- ============================================ -->
+<!--                    HSQL-DB                   -->
+<!-- ============================================ -->
+<!--
+	<db id = "0" 
+		name   = "HSQLDB - bookstore" 
+		driver = "org.hsqldb.jdbcDriver" 
+		url    = "jdbc:hsqldb:hsql://localhost:9001/bookstore" 
+		isolationLevel = "" 
+		poolSize       = "3" >
+			<property name="user"      value="xxxx" />
+			<property name="password"  value="xxxx" />
+			<metadata catalog="" schema="PUBLIC" table-name-pattern="%" table-types="TABLE   VIEW  " />
+	</db>
+-->
+
+<!-- ============================================ -->
+<!--            ORACLE 8i, 9i, 10g, 11g           -->
+<!-- ============================================ -->
+<!-- The JDBC Driver is in "ojdbc14.jar" or "ojdbc5.jar (JDK 1.5) or "ojdbc6.jar" (JDK 1.6)
+     ( or "classes12.jar" or "classes12.zip" for 8i ) 
+     For ORACLE meta-data set 
+      . catalog="!" (no catalog, "!" means null) 
+      . schema="HR" to use the demo database provided with Oracle XE
+-->
+<!--
+	<db id = "0" 
+		name   = "Oracle - bookstore" 
+		driver = "oracle.jdbc.driver.OracleDriver" 
+		url    = "jdbc:oracle:thin:@localhost:1521/XE"
+		isolationLevel = "TRANSACTION_READ_COMMITTED" 
+		poolSize       = "3" >
+			<property name="user"      value="xxxx" />
+			<property name="password"  value="xxxx" />
+			<metadata catalog="!" schema="BOOKSTORE" 
+				table-name-pattern="%" table-types="TABLE   VIEW  " />
+	</db>		
+-->
+
+<!-- ============================================ -->
+<!--                    SQLSERVER                 -->
+<!-- ============================================ -->
+	<!-- The JDBC Driver is in "sqljdbc.jar" -->
+<!--
+	<db id = "1" 
+	    name   = "Microsoft SQL Server - Bookstore" 
+	    driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver" 
+	    url    = "jdbc:sqlserver://10.226.xxx.xxx" 
+	    isolationLevel = "TRANSACTION_READ_COMMITTED" 
+	    poolSize       = "3" >
+	        <property name="user"      value="demo" />
+	        <property name="password"  value="demo" />
+	        <metadata catalog="demo"  schema="dbo"  table-name-pattern="%"  table-types="TABLE VIEW  " />
+	</db>
+-->
+
+<!-- ============================================ -->
+<!--           INTERSYSTEMS CACHE DB              -->
+<!-- ============================================ -->
+<!-- The JDBC Driver is in "CacheDB.jar". Don't forget to set the default schema in Cache -->
+<!--
+	<db id = "0" 
+		name   = "InterSystems Cache DB 2010.2" 
+		driver = "com.intersys.jdbc.CacheDriver" 
+		url    = "jdbc:Cache://localhost:1972/SAMPLES" 
+		isolationLevel = "" 
+		poolSize       = "4" >
+		    <property name="user"     value="_system" />
+			<property name="password" value="SYS"     />
+			<metadata catalog=""  schema="Sample" table-name-pattern="%" table-types="TABLE   VIEW  " />
+	</db>
+-->
+
+<!-- ============================================ -->
+<!--                 INGRES 10                    -->
+<!-- ============================================ -->
+<!--
+	<db id = "0" 
+		name   = "INGRES bookstore DB" 
+		driver = "ca.ingres.jdbc.IngresDriver" 
+		url    = "jdbc:ingres://localhost:117/bookstore" 
+		isolationLevel = "" 
+		poolSize       = "3" >
+		    <property name="user"     value="demo" />
+			<property name="password" value="demo" />
+			<metadata catalog=""  schema="ROOT"  table-name-pattern="%"  table-types="TABLE   VIEW  " />
+	</db>
+-->
+	
+<!-- ============================================ -->
+<!--                 IBM DB2                      -->
+<!-- ============================================ -->
+<!--
+	<db id = "0" 
+		name   = "DB2 bookstore DB" 
+		driver = "com.ibm.db2.jcc.DB2Driver" 
+		url    = "jdbc:db2://sysmvs1.stl.ibm.com:5021/bookstore" 
+		isolationLevel = "" 
+		poolSize       = "3" >
+		    <property name="user"     value="db2adm" />
+			<property name="password" value="db2adm" />
+			<metadata catalog=""  schema=""  table-name-pattern="%"  table-types="TABLE   VIEW  " />
+	</db>
+-->
+
+</databases>
