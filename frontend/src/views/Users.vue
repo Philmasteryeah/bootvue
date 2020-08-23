@@ -108,7 +108,7 @@ export default {
       api
         .getUsers()
         .then((response) => {
-          this.tableItems = response.data;
+          this.tableItems = response.data._embedded.accounts;
         })
         .catch((error) => {
           this.errors.push(error);

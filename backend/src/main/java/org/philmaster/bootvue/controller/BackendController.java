@@ -22,7 +22,6 @@ import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api")
 public class BackendController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(BackendController.class);

@@ -3,7 +3,7 @@
     <CCard>
       <CCardBody>
         <CRow>
-          asd
+          asdsadasd
           <CCol s m="5">
             <h4 id="traffic" class="card-title mb-0">Traffic</h4>
             <div class="small text-muted">Novemberasss 2017</div>
