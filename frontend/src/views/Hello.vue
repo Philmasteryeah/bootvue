@@ -1,6 +1,8 @@
 <template>
   <div class="hello">
+    <CCard>sdd
     <h1>{{ hellomsg }}</h1>
+    </CCard>
   </div>
 </template>
 

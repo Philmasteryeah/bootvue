@@ -1,11 +1,6 @@
 <template>
   <div class="users">
-    <CRow>
-      <CCol md="12">
-        <CButton color="primary" class="px-4" @click="loadUsers()">Reload users</CButton>
-        <CButton @click="modalNew = true" class="px-4" color="success">Create User</CButton>
-      </CCol>
-    </CRow>
+
     <CRow>
       <CCol md="12">
         <CCard>
@@ -62,10 +57,22 @@
               </template>
             </CDataTable>
           </CCardBody>
+          <CCardFooter>
+       
+       <CButtonToolbar>
+
+          <CButton color="primary" class="px-4" @click="loadUsers()">Reload users</CButton>
+        <CButton @click="modalNew = true" class="px-4" color="success">Create User</CButton>
+
+       </CButtonToolbar>
+
+      
+          </CCardFooter>
         </CCard>
       </CCol>
     </CRow>
     <CRow>
+
       <CCol md="12">
         <CModal title="New User" color="success" :show.sync="modalNew">
           <usercomp />
@@ -108,7 +115,9 @@ export default {
       api
         .getUsers()
         .then((response) => {
+                 console.log(response);
           this.tableItems = response.data._embedded.accounts;
+         
         })
         .catch((error) => {
           this.errors.push(error);
