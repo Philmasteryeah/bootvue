@@ -12,9 +12,6 @@ import java.io.Serializable;
 //import org.hibernate.validator.constraints.* ;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -30,16 +27,8 @@ import javax.persistence.Table;
 @Table(name = "FormType")
 // Define named queries here
 @NamedQueries({ @NamedQuery(name = "FormType.countAll", query = "SELECT COUNT(x) FROM FormType x") })
-public class FormType implements Serializable {
+public class FormType extends BaseModel implements Serializable {
 	private static final long serialVersionUID = 1L;
-
-	// ----------------------------------------------------------------------
-	// ENTITY PRIMARY KEY ( BASED ON A SINGLE FIELD )
-	// ----------------------------------------------------------------------
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id", nullable = false)
-	private short id;
 
 	// ----------------------------------------------------------------------
 	// ENTITY DATA FIELDS
@@ -56,17 +45,6 @@ public class FormType implements Serializable {
 	// ----------------------------------------------------------------------
 	public FormType() {
 		super();
-	}
-
-	// ----------------------------------------------------------------------
-	// GETTER & SETTER FOR THE KEY FIELD
-	// ----------------------------------------------------------------------
-	public void setId(short id) {
-		this.id = id;
-	}
-
-	public short getId() {
-		return this.id;
 	}
 
 	// ----------------------------------------------------------------------
@@ -91,7 +69,7 @@ public class FormType implements Serializable {
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("[");
-		sb.append(id);
+		sb.append(this.getId());
 		sb.append("]:");
 		sb.append(name);
 		return sb.toString();

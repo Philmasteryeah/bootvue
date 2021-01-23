@@ -1,28 +1,26 @@
 package org.philmaster.bootvue.model;
 
-import static org.philmaster.bootvue.config.Constants.EMAIL_REGEX;
-
+import java.io.Serializable;
 import java.time.Instant;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.User;
+//import org.hibernate.validator.constraints.Length;
+//import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * A user.
@@ -35,19 +33,9 @@ import org.springframework.security.core.userdetails.User;
 //@NamedQuery(name = "findUserByActivationKey", query = "select u from User u where u.activationKey = :activationKey")
 //@NamedQuery(name = "findUserByUserId", query = "select u from User u where u.id = :id")
 //@NamedEntityGraph(name = "graph.user.authorities", attributeNodes = @NamedAttributeNode("authorities"))
-public class Account extends User {
+public class Account extends BaseModel implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
-
-	// @NotNull
-	// @Pattern(regexp = LOGIN_REGEX)
-	// @Size(min = 1, max = 50)
-	// @Column(length = 50, unique = true, nullable = false)
-	private String login;
 
 	// @NotNull
 
@@ -59,14 +47,17 @@ public class Account extends User {
 	@Column(name = "last_name", length = 50)
 	private String lastName;
 
-	@Email(regexp = EMAIL_REGEX, message = "bla")
+	// @Email(regexp = EMAIL_REGEX, message = "bla")
+
+	@Column(name = "email")
+	@Email(message = "Please provide a valid Email")
+	@NotEmpty(message = "Please provide an email")
 	@Size(min = 5, max = 100)
-	@Column(length = 100, unique = true)
 	private String email;
 
 	// @NotNull
 	@Column(nullable = false)
-	private boolean activated = false;
+	private boolean isActivated = false;
 
 	@Size(min = 2, max = 5)
 	@Column(name = "lang_key", length = 5)
@@ -83,34 +74,34 @@ public class Account extends User {
 	@Column(name = "reset_date")
 	private Instant resetDate = null;
 
+	@Column(name = "username")
+	@NotEmpty(message = "Please provide your username")
+	private String username;
+
+	// @Length(min = 5, message = "Your password must have at least 5 characters")
+
+	@Column(name = "password", unique = true)
+	@NotEmpty(message = "Please provide your password")
+	@JsonIgnore
+	private String password;
+
+	@Column(name = "is_enabled")
+	@JsonIgnore
+	private boolean isEnabled;
+
+	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", insertable = false, updatable = false)
+	private Calendar createdDate;
+
 	@ManyToMany
-	@JoinTable(name = "user_authority", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "authority_id") })
-	private Set<Authority> authorities = new HashSet<>();
-
-	public Account() {
-		super("NEEDED FOR POJO", "1", Collections.singleton(new Authority()));
-	}
-
-	public Account(String username, String password, Collection<? extends GrantedAuthority> authorities) {
-		super(username, password, authorities);
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getLogin() {
-		return login;
-	}
+	@JoinTable(
+	  name = "user_authority", 
+	  joinColumns = @JoinColumn(name = "authority_id"), 
+	  inverseJoinColumns = @JoinColumn(name = "user_id"))
+	private Set<Authority> authorities;
 
 	// Lowercase the login before saving it in database
-	public void setLogin(String login) {
-		this.login = login.toLowerCase(Locale.ENGLISH);
+	public void setUsername(String username) {
+		this.username = username.toLowerCase(Locale.ENGLISH);
 	}
 
 	public String getFirstName() {
@@ -129,20 +120,12 @@ public class Account extends User {
 		this.lastName = lastName;
 	}
 
-	public String getEmail() {
-		return email;
+	public boolean isActivated() {
+		return isActivated;
 	}
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public boolean getActivated() {
-		return activated;
-	}
-
-	public void setActivated(boolean activated) {
-		this.activated = activated;
+	public void setIsActivated(boolean isActivated) {
+		this.isActivated = isActivated;
 	}
 
 	public String getActivationKey() {
@@ -177,8 +160,44 @@ public class Account extends User {
 		this.langKey = langKey;
 	}
 
+	public Set<Authority> getAuthorities() {
+		return this.authorities;
+	}
+
 	public void setAuthorities(Set<Authority> authorities) {
 		this.authorities = authorities;
+	}
+
+	public Calendar getCreatedDate() {
+		return createdDate;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+
+	public void setIsEnabled(boolean isEnabled) {
+		this.isEnabled = isEnabled;
 	}
 
 }

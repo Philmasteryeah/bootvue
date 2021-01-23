@@ -54,7 +54,7 @@ public class UserServiceImpl implements UserDetailsService {
 		Account account = new Account();
 		account.setFirstName(firstName);
 		account.setLastName(lastName);
-		account.setLogin(firstName);
+		account.setUsername(firstName);
 		//account.setAuthorities(authorities);
 		
 
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserDetailsService {
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		return findbyUsername(username);
+		return (UserDetails) findbyUsername(username);
 //
 //		Set<Authority> authorities = new HashSet<>();
 //		for (GrantedAuthority role : user.getAuthorities())

@@ -1,6 +1,0 @@
-// Entity FormType
-
-FormType {
-  id : short { @Id, @AutoIncremented }; 
-  name : string ; 
-}
