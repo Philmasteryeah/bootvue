@@ -3,7 +3,6 @@ package org.philmaster.bootvue.model;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.Calendar;
-import java.util.HashSet;
 import java.util.Locale;
 import java.util.Set;
 
@@ -93,10 +92,7 @@ public class Account extends BaseModel implements Serializable {
 	private Calendar createdDate;
 
 	@ManyToMany
-	@JoinTable(
-	  name = "user_authority", 
-	  joinColumns = @JoinColumn(name = "authority_id"), 
-	  inverseJoinColumns = @JoinColumn(name = "user_id"))
+	@JoinTable(name = "user_authority", joinColumns = @JoinColumn(name = "authority_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
 	private Set<Authority> authorities;
 
 	// Lowercase the login before saving it in database
